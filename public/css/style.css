@@ -1,0 +1,425 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+/******** reset ****************/
+:root{
+    --regular-white-16: 16px;
+    --bold-white-22 : 22px;
+    --regular-white-14 : 14px;
+    --regular-white-12 : 12px;
+    --bold-qs-14 : 14px;
+    --regular-qs-12 : 12px;
+    --red-principal : #E86060;
+    --dark-red-secondary :#662323;
+    --soft-gray : #BDBDBD;
+    --gray : #828282;
+    --light-red: #FF7676;
+    --white : #fff;
+    --name : #4F4F4F;
+    --background-player : #EB5757;
+    --font :'Quicksand', sans-serif;
+}
+html{
+    box-sizing: border-box;
+    font-family: var(--font);
+    font-size: 16px;
+}
+
+
+*,*::after,*::before{
+    box-sizing: inherit;
+}
+
+ul{
+    list-style: none;
+}
+h1,h2,h3,h4,h5,h6,body,ul,figure{
+    margin: 0;
+    padding: 0;
+}
+img{
+    width: 100%;
+    height: auto;
+}
+
+
+button{
+    border: 0;
+    background-color: transparent;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+@media screen and (min-width:1024px){
+    body > div{
+        display: grid;
+        grid-template-columns: 30% 1fr;
+        grid-template-rows : repeat(2,auto) 1fr auto;
+        grid-template-areas: 
+        "navbar search"
+        "navbar detail"
+        "navbar results"
+        "player player";
+    }
+}
+/************* components **********/
+
+/*******  NavBar *******/
+.navbar{
+    background-color: var(--dark-red-secondary);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding-left: 1.5rem;
+    padding-top: 1.5rem;
+    visibility: hidden;
+    
+}
+@media screen and (min-width:1024px){
+    .navbar{
+        position: static;
+        visibility: visible;
+        grid-area: navbar;
+    }
+}
+.is-active{
+    visibility: visible;
+}
+.navbar .logo{
+    width: 80%;
+
+}
+.library , .playlist {
+    
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.library h2,.playlist h2{
+    font-size: var(--bold-white-22);
+    font-weight: 700;
+    color: var(--white);
+}
+.library li, .playlist li{
+    line-height: 1.5;
+    color: var(--white);
+    font-size: var(--regular-white-16);
+}
+.library li:first-child{
+    color: var(--red-principal);
+    font-weight: 700;
+}
+
+/********* Search **********/
+.search{
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem;
+}
+@media screen and (min-width:1024px) {
+    .search{
+        grid-area: search;
+    }
+}
+.search_form {
+    width: 80%;
+}
+.search_form input{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color: var(--gray);
+    border: 1px solid;
+    border-right: none;
+    padding: .5rem;
+    outline: none;
+}
+.search_form button{
+    background-color: var(--white);
+    border: 1px solid var(--gray);
+    border-left: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: .5rem;
+}
+
+.search_user {
+    display: flex;
+    align-items: center;
+}
+.search_user span{
+    color: var(--red-principal);
+    margin-right: 5px;
+    font-size: 1.5rem;
+}
+.search_user h1{
+    color: var(--name);
+    font-size: var(--regular-white-16);
+    display: none;
+}
+
+@media screen and (min-width:1024px){
+    .search_form input{
+        width: 80%;
+    }
+    .search_user h1{
+        display: block;
+    }
+    .search_user{
+        align-items: baseline;
+    }
+}
+
+/************** Detail *************/
+@media screen and (min-width:768px){
+    .detail{
+        display: grid;
+        grid-template-columns: auto 1fr;
+    }
+}
+
+@media screen and (min-width:1024px){
+    .detail{
+        grid-area: detail;
+    }
+}
+.detail_user {
+    text-align: center;  
+}
+.detail_user img{
+    vertical-align: top;
+}
+.detail_description{
+    background: linear-gradient(to left, rgba(167,0,0,.4), rgba(176,0,0,.4) 50%, rgba(176,0,0,.4) 75%, rgba(176,0,0,.4) 75%);
+    padding: .5rem;
+    
+}
+@media screen and (min-width:768px){
+    .detail_description{
+        display:flex;
+        flex-direction:column;
+        padding: 1.2rem;
+    }
+}
+
+.detail_description h2{
+    font-size: var(--bold-white-22);
+    color: var(--white);
+    font-weight: 700;
+}
+.detail_description p{
+    color: var(--white);
+    font-size: var(--regular-qs-12);
+}
+.detail_description_subtitle{
+    display: flex;
+    align-items: baseline;
+}
+
+.detail_description_subtitle h3 {
+    color: var(--white);
+    font-size: var(--regular-white-14);
+    margin-right: .5rem;
+}
+.detail_description_subtitle small{
+    color: var(--dark-red-secondary);
+    font-size: 10px;
+}
+
+.detail_description_button{
+    width: 80%;
+    padding-bottom: .5rem;
+}
+
+
+.detail_description_button button{
+border-radius: 10px;
+padding: .5rem 1rem;
+font-size: var(--regular-white-14);
+}
+
+@media screen and (min-width:768px){
+    .detail_description_button{
+        margin-top: 1.5rem;
+    }
+}
+.detail_description_button span{
+    display: inline-block;
+    font-size: 35px;
+    color: var(--white);
+}
+.detail_description_button_play{
+    background-color: var(--red-principal);
+    color: var(--white);
+}
+.detail_description_button_follow{
+    background-color: transparent;
+    color: var(--red-principal);
+    border: 1px solid;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+/*********** Results *************/
+.results{
+    margin-bottom: 8rem;
+}
+@media screen and (min-width:1024px){
+    .results{
+        grid-area: results;
+        margin-bottom: 0;
+    }
+}
+.results h2{
+    color: var(--red-principal);
+    font-size: var(--bold-white-22);
+    font-weight: 700;
+    padding-top: 1.5rem;
+    padding-left: 1rem;
+}
+@media screen and (min-width:768px){
+    .results_albums{
+        display:grid;
+        grid-template-columns: repeat(auto-fit,minmax(30%,1fr));
+    }
+}
+
+.results_albums_item{
+    width: 80%;
+    margin: 1rem auto;
+    position: relative;
+}
+.results_albums_item span{
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    font-size: 1.2rem;
+    color: var(--white);
+}
+.results_albums_item h3{
+    font-size: var(--regular-white-14);
+    color: #555555;
+}
+.results_albums_item h4{
+    font-size: var(--regular-white-12);
+    color: var(--gray);
+}
+
+
+/***************** PLayer *******************/
+.player{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr .5fr;
+    grid-template-rows: repeat(3,2.5rem);
+    background-color: var(--background-player);
+    color: var(--white);
+}
+
+.player_user{
+    width: 2.5rem;
+}
+
+.player  i{
+    font-size: 1.5rem;
+    color: var(--white);
+    
+}
+
+.player_controls_info h4{
+    font-size: var(--regular-white-14);
+    font-weight: 700;
+}
+.player_controls_info h5{
+    font-size: var(--regular-white-12);
+}
+
+.player_controls_play{
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    
+}
+.player_controls_play button{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player_controls_play button:nth-of-type(1)::before{
+    content: "";
+    display: block;
+    width: .2rem;
+    height: 45%;
+    background-color: var(--white);
+    position: absolute;
+    left: .1rem;    
+}
+.player_controls_play button:nth-of-type(3)::after{
+    content: "";
+    display: block;
+    width: .2rem;
+    height: 45%;
+    background-color: var(--white);
+    position: absolute;
+    right: .1rem;    
+}
+
+.player_controls_play button:nth-of-type(2){
+    background-color: var(--light-red);
+    width: 2.5rem;
+    margin-left:.5rem ;
+    margin-right: .5rem;
+    border-radius: 50%;
+    text-align: center;
+}
+.player_controls_play button:nth-of-type(2) i{
+    font-size: .9rem;
+    padding-left: .2rem;
+}
+.player_controls_vol {
+    grid-column: span 2;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: .5rem;
+}
+@media screen and (min-width:1024px){
+    .player{
+        position: static;
+        grid-area: player;
+        grid-template-columns: 6.25rem repeat(3,1fr);
+        grid-template-rows: 6.25rem;
+        align-items: center;
+    }
+    .player *{
+        margin: 0;
+    }
+    .player_user{
+        grid-column: 1/2;
+        width: 6.25rem;
+        align-self: flex-start;
+        
+    }
+    .player_user img {
+        vertical-align: top;
+    }
+    .player_controls_info{
+        grid-column: 2/3;
+        padding-left: 1rem;
+    }
+    .player_controls_play{
+        grid-column: 3/4;
+        height: 40%;
+    }
+    .player_controls_vol{
+        grid-column: 4/5;
+        justify-content: flex-end;
+        margin: 0;
+        padding-right: 1rem;
+    }
+}
+
