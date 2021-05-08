@@ -2,10 +2,11 @@
   <section class="search">
       <form class="search_form">
           <input type="search" placeholder="Buscar" v-model="name" >
-          <button @click="getMusic(name)">
+          <button @click.prevent="getApi">
               <i class="fas fa-search"></i>
           </button>
       </form>
+      {{name}}
       
       <div class="search_user">
         <span><i class="fas fa-user"></i></span>
@@ -15,30 +16,45 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {useStore} from "vuex";
+import {ref,onMounted} from "vue";
 export default {
   name:"Search",
-  data(){
-    return{
-      name:""
-    }
-  },
-  methods:{
-    // ...mapActions(["getMusic"]),
-  
-     async getMusic(){
-      try {
-        const res = await fetch(`https://api.deezer.com/user/2529/playlists&output=json`);
-        if(!res.ok) throw {error : "mensaje error"}
-        console.log(res)
-        
-      } catch (error) {
-        console.log(error.error)
-      }
+  setup(){
+    const store = useStore()
+    const name = ref("")
+    onMounted(()=>{
 
-    }
+      store.dispatch("getApi")
+      
+    })
+
+
+
+
+
+// const get = async ()=>{
+  //    const res = await fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${name}&index=0&limit=8`, {
+  //       "method": "GET",
+  //       "headers": {
+  //           "x-rapidapi-key": "9cd7dcd2admsh5fd701ca0fa161cp11bbd2jsn921584877b1b",
+  //           "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com"
+  //       }
+  //   });
+  //   array.value = await res.json();
+  //   store.dispatch("catchAudio",array.value.data[0].preview)
+    
+  //   // const audio= new Audio(array.value.data[0].preview)
+  //   // audio.play()
+  //   console.log(array.value)
+  //   console.log(store.state.audio)
+    
+  // }
+  
+    return {name}
   }
 
-}
+ 
+  }
 </script>
 

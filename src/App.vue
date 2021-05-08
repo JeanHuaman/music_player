@@ -7,7 +7,7 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+
     import Navbar from '@/components/Navbar'
     import Search from '@/components/Search'
     import Detail from '@/components/Detail'

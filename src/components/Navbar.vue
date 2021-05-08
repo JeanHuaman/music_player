@@ -1,5 +1,5 @@
 <template>
-<header class="navbar">
+<header class="navbar ">
   <div class="logo">
       <img src="../assets/foxbel-music.png" alt="Logo">
   </div>
@@ -25,11 +25,30 @@
     </section>
   </nav>
 </header>
+  <button @click="active" class="hamburger hamburger--collapse btn-navbar" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
 </template>
 
 <script>
 export default {
-  name:"Navbar"
+  name:"Navbar",
+  methods:{
+    active(){
+      const btn = document.querySelector(".btn-navbar"),
+      navbar = document.querySelector(".navbar")
+
+      if(navbar.classList.contains("is-active")){
+          navbar.classList.remove("is-active")
+          btn.classList.remove("is-active")
+      }else{
+        navbar.classList.add("is-active")
+          btn.classList.add("is-active")
+      }
+    }
+  }
 }
 </script>
 
